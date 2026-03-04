@@ -1,0 +1,294 @@
+<div class="relative bg-white dark:bg-neutral-900 transition-all duration-500 ease-in-out"
+    style="aspect-ratio: 16 / 10;"><iframe title="Preview of Futuristic 3D Carousel Gallery Background"
+        class="w-full h-full border-0" sandbox="allow-scripts" srcdoc="
+                              &lt;!DOCTYPE html&gt;
+                              &lt;html lang=&quot;en&quot;&gt;
+                              &lt;head&gt;
+                                &lt;meta charset=&quot;UTF-8&quot;&gt;
+                                &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+                                &lt;title&gt;Component Preview&lt;/title&gt;
+                                &lt;script src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;
+                                &lt;style&gt;
+                                  html, body { height: 100%; margin: 0; padding: 0; }
+                                  body { height: 100%; overflow: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #ffffff; color: #000000; }
+                                  .component-wrapper { width: 100%; height: 100%; padding: 0; box-sizing: border-box; overflow: auto; }
+                                &lt;/style&gt;
+                              &lt;/head&gt;
+                              &lt;body&gt;
+                                &lt;div class=&quot;component-wrapper&quot;&gt;
+                                  &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;spatial-root&quot; class=&quot;relative w-full h-screen overflow-hidden bg-black text-[#EAEAEA]&quot; style=&quot;font-family: 'SF Mono', monospace; cursor: none; --c-grid: rgba(255, 255, 255, 0.08); --c-dim: #555555;&quot;&gt;
+  &lt;style&gt;
+    .gl-line {
+      position: absolute;
+      background: var(--c-grid);
+    }
+
+    .crosshair::before,
+    .crosshair::after {
+      content: '';
+      position: absolute;
+      background: #EAEAEA;
+    }
+
+    .crosshair::before {
+      width: 100%;
+      height: 1px;
+      top: 50%;
+      left: 0;
+    }
+
+    .crosshair::after {
+      width: 1px;
+      height: 100%;
+      left: 50%;
+      top: 0;
+    }
+
+    .meta-text {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .side-text {
+      writing-mode: vertical-rl;
+    }
+  &lt;/style&gt;
+
+  &lt;div id=&quot;loader&quot; class=&quot;fixed inset-0 z-[100] flex items-center justify-center bg-black transition-opacity duration-1000 text-[11px] tracking-[0.3em]&quot;&gt;
+    SYSTEM_CALIBRATION...
+  &lt;/div&gt;
+
+  &lt;div id=&quot;cursor-ring&quot; class=&quot;fixed top-0 left-0 w-10 h-10 border border-white/40 rounded-full pointer-events-none z-[9999] mix-blend-difference -translate-x-1/2 -translate-y-1/2 transition-[width,height] duration-300&quot;&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;cursor-dot&quot; class=&quot;fixed top-0 left-0 w-1 h-1 bg-white rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2&quot;&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;absolute inset-0 z-10 grid grid-cols-[60px_1fr_60px] grid-rows-[60px_1fr_60px] pointer-events-none&quot;&gt;
+    &lt;div class=&quot;gl-line w-full h-px left-0 top-[60px]&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;gl-line w-full h-px left-0 bottom-[60px]&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;gl-line h-full w-px top-0 left-[60px]&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;gl-line h-full w-px top-0 right-[60px]&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;crosshair absolute w-2.5 h-2.5 top-[55px] left-[55px]&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;crosshair absolute w-2.5 h-2.5 top-[55px] right-[55px]&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;crosshair absolute w-2.5 h-2.5 bottom-[55px] left-[55px]&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;crosshair absolute w-2.5 h-2.5 bottom-[55px] right-[55px]&quot;&gt;&lt;/div&gt;
+
+    &lt;header class=&quot;col-start-2 row-start-1 flex justify-between items-center px-5 meta-text&quot;&gt;
+      &lt;div class=&quot;flex items-center&quot;&gt;
+        &lt;span class=&quot;font-bold mr-4&quot;&gt;CORE_SYSTEM&lt;/span&gt;
+        &lt;span class=&quot;text-[#555555]&quot;&gt;NODE.V2.X&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div&gt;KINETIC / SYNERGY / FLOW&lt;/div&gt;
+      &lt;div id=&quot;time-display&quot; class=&quot;text-[#555555]&quot;&gt;00:00:00 [GMT]&lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;div class=&quot;col-start-1 row-start-2 flex justify-center items-center side-text rotate-180 meta-text&quot;&gt;
+      &lt;span class=&quot;text-[#555555]&quot;&gt;DATA_STREAM [ENCRYPTED]&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;col-start-3 row-start-2 flex justify-center items-center side-text meta-text&quot;&gt;
+      &lt;span&gt;LATENCY_SYNC&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;footer class=&quot;col-start-2 row-start-3 flex justify-between items-center px-5 meta-text&quot;&gt;
+      &lt;div class=&quot;flex items-center&quot;&gt;
+        &lt;div class=&quot;w-1.5 h-1.5 bg-[#00FF41] rounded-full mr-3 shadow-[0_0_12px_#00FF41]&quot;&gt;&lt;/div&gt;
+        &lt;span&gt;RESONANCE STABLE&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div id=&quot;slide-counter&quot; class=&quot;text-[#555555]&quot;&gt;01 / 05&lt;/div&gt;
+      &lt;div class=&quot;w-[100px]&quot;&gt;&lt;/div&gt;
+    &lt;/footer&gt;
+
+    &lt;div class=&quot;absolute bottom-0 left-0 w-full h-[2px] bg-white/10&quot;&gt;
+      &lt;div id=&quot;progress-bar&quot; class=&quot;h-full bg-white w-0 transition-[width] duration-100 ease-out&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div id=&quot;gl-container&quot; class=&quot;fixed inset-0 z-0&quot;&gt;&lt;/div&gt;
+
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+    (function() {
+            const config = { speed: 1.8, damping: 0.08, cardW: 3.8, cardH: 2.2, gap: 4.8 };
+            const content = [
+                { img: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&amp;w=2000&amp;auto=format&amp;fit=crop', title: 'QUANTUM_SHIFT' },
+                { img: 'https://images.unsplash.com/photo-1635776062127-d379bfcbb9c8?q=80&amp;w=2000&amp;auto=format&amp;fit=crop', title: 'PLASMA_ARC' },
+                { img: 'https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&amp;w=2000&amp;auto=format&amp;fit=crop', title: 'CYBER_SPHERE' },
+                { img: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&amp;w=2000&amp;auto=format&amp;fit=crop', title: 'DARK_MATTER' },
+                { img: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&amp;w=2000&amp;auto=format&amp;fit=crop', title: 'LIGHT_SYNC' }
+            ];
+
+            const scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x050505, 0.12);
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.z = 6;
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            document.getElementById('gl-container').appendChild(renderer.domElement);
+
+            const vsh = `varying vec2 vUv; uniform float uTime; uniform float uSpeed; uniform float uOffset;
+                void main() { vUv = uv; vec3 pos = position;
+                float wave = sin(pos.x * 1.5 + uTime * 2.0 + uOffset * 2.0) * cos(pos.y * 1.5 + uTime * 1.5);
+                pos.z += wave * 0.25 + sin(pos.x * 2.0) * uSpeed * 0.3;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0); }`;
+            const fsh = `uniform sampler2D uTexture; uniform float uTime; uniform float uHover; varying vec2 vUv;
+                float rnd(vec2 st) { return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123); }
+                void main() { vec2 uv = vUv; float ripple = sin(uv.x * 10.0 + uTime * 2.0) * 0.005 * uHover;
+                vec4 tex = texture2D(uTexture, uv + ripple); float gray = dot(tex.rgb, vec3(0.299, 0.587, 0.114));
+                vec3 col = mix(vec3(gray), tex.rgb, 0.3 + (uHover * 0.7)) + rnd(uv * uTime) * 0.12;
+                col *= smoothstep(0.9, 0.2, distance(uv, vec2(0.5)));
+                gl_FragColor = vec4(col - sin(uv.y * 600.0 + uTime * 10.0) * 0.02, 1.0); }`;
+
+            const meshes = [], group = new THREE.Group(); scene.add(group);
+            const texLoader = new THREE.TextureLoader();
+            content.forEach((item, i) =&gt; {
+                const mat = new THREE.ShaderMaterial({
+                    uniforms: { uTexture: { value: texLoader.load(item.img) }, uTime: { value: 0 }, uSpeed: { value: 0 }, uOffset: { value: i * config.gap }, uHover: { value: 0 } },
+                    vertexShader: vsh, fragmentShader: fsh, transparent: true, side: THREE.DoubleSide
+                });
+                const mesh = new THREE.Mesh(new THREE.PlaneGeometry(config.cardW, config.cardH, 64, 64), mat);
+                mesh.position.x = i * config.gap; mesh.userData = { index: i, originalX: i * config.gap };
+                group.add(mesh); meshes.push(mesh);
+            });
+
+            let scroll = 0, scrollT = 0, mouse = new THREE.Vector2(), ray = new THREE.Raycaster();
+            window.addEventListener('wheel', e =&gt; scrollT += e.deltaY * 0.002 * config.speed);
+            window.addEventListener('mousemove', e =&gt; {
+                mouse.x = (e.clientX / window.innerWidth) * 2 - 1; mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+                gsap.to('#cursor-ring', { x: e.clientX, y: e.clientY, duration: 0.15 });
+                gsap.to('#cursor-dot', { x: e.clientX, y: e.clientY, duration: 0.05 });
+            });
+
+            setInterval(() =&gt; { document.getElementById('time-display').innerText = new Date().toISOString().split('T')[1].split('.')[0] + &quot; [GMT]&quot;; }, 1000);
+
+            function animate() {
+                const time = performance.now() * 0.001;
+                scroll += (scrollT - scroll) * config.damping;
+                const totalW = content.length * config.gap;
+                let activeIdx = 0, minDist = Infinity;
+
+                meshes.forEach(m =&gt; {
+                    let x = m.userData.originalX - scroll;
+                    while (x &lt; -totalW / 2) x += totalW; while (x &gt; totalW / 2) x -= totalW;
+                    m.position.x = x;
+                    const d = Math.abs(x);
+                    m.position.y = Math.sin(x * 0.8 + time) * 0.45;
+                    m.position.z = Math.cos(x * 0.8 + time) * 0.45 - Math.pow(d * 0.35, 2);
+                    m.rotation.y = -x * 0.08; m.material.uniforms.uTime.value = time;
+                    m.material.uniforms.uSpeed.value = scrollT - scroll;
+                    m.material.uniforms.uOffset.value = x;
+                    if (d &lt; minDist) { minDist = d; activeIdx = m.userData.index; }
+                });
+
+                ray.setFromCamera(mouse, camera);
+                const hits = ray.intersectObjects(meshes);
+                meshes.forEach(m =&gt; gsap.to(m.material.uniforms.uHover, { value: 0, duration: 0.6 }));
+                if (hits.length &gt; 0) {
+                    gsap.to(hits[0].object.material.uniforms.uHover, { value: 1, duration: 0.4 });
+                    gsap.to('#cursor-ring', { width: 64, height: 64, duration: 0.3 });
+                } else { gsap.to('#cursor-ring', { width: 40, height: 40, duration: 0.3 }); }
+
+                document.getElementById('slide-counter').innerText = `0${activeIdx + 1} / 0${content.length}`;
+                document.getElementById('progress-bar').style.width = `${(activeIdx / (content.length - 1)) * 100}%`;
+                renderer.render(scene, camera); requestAnimationFrame(animate);
+            }
+            window.addEventListener('resize', () =&gt; { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+            animate();
+            setTimeout(() =&gt; { gsap.to('#loader', { opacity: 0, duration: 1, onComplete: () =&gt; document.getElementById('loader').style.display = 'none' }); }, 1500);
+        })();
+  &lt;/script&gt;
+&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;
+                                &lt;/div&gt;
+                                
+    &lt;script&gt;
+      (function() {
+        function checkAndCenter() {
+          // Use double requestAnimationFrame to ensure DOM is fully painted and layout is stable
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              const wrapper = document.querySelector('.component-wrapper');
+              if (!wrapper) return;
+              
+              // Get all child elements
+              const children = Array.from(wrapper.children);
+              if (children.length === 0) return;
+              
+              // Temporarily override wrapper styles to shrink-wrap for measurement
+              // Set inline styles to shrink-wrap (inline styles override CSS)
+              wrapper.style.display = 'inline-block';
+              wrapper.style.width = 'auto';
+              wrapper.style.height = 'auto';
+              wrapper.style.overflow = 'visible';
+              wrapper.style.boxSizing = 'content-box';
+              
+              // Force multiple reflows to ensure styles are fully applied
+              void wrapper.offsetHeight;
+              void wrapper.offsetWidth;
+              void wrapper.offsetHeight;
+              
+              // Measure the wrapper's content size
+              const contentWidth = wrapper.offsetWidth;
+              const contentHeight = wrapper.offsetHeight;
+              
+              // Restore original styles by removing inline styles we added
+              wrapper.style.removeProperty('display');
+              wrapper.style.removeProperty('width');
+              wrapper.style.removeProperty('height');
+              wrapper.style.removeProperty('overflow');
+              wrapper.style.removeProperty('box-sizing');
+              
+              // If content is less than 500x500, center it
+              if (contentWidth &gt; 0 &amp;&amp; contentHeight &gt; 0 &amp;&amp; contentWidth &lt; 500 &amp;&amp; contentHeight &lt; 500) {
+                wrapper.style.display = 'flex';
+                wrapper.style.alignItems = 'center';
+                wrapper.style.justifyContent = 'center';
+              }
+            });
+          });
+        }
+        
+        // Check immediately and after delays to ensure content is rendered and styled
+        function runChecks() {
+          checkAndCenter();
+          setTimeout(checkAndCenter, 50);
+          setTimeout(checkAndCenter, 150);
+          setTimeout(checkAndCenter, 300);
+          setTimeout(checkAndCenter, 500);
+          setTimeout(checkAndCenter, 1000);
+        }
+        
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', runChecks);
+        } else {
+          runChecks();
+        }
+        
+        // Also check when images or other resources load
+        window.addEventListener('load', () =&gt; {
+          setTimeout(checkAndCenter, 100);
+          setTimeout(checkAndCenter, 300);
+        });
+        
+        // Use ResizeObserver to detect size changes
+        if (window.ResizeObserver) {
+          setTimeout(() =&gt; {
+            const wrapper = document.querySelector('.component-wrapper');
+            if (wrapper) {
+              const observer = new ResizeObserver(() =&gt; {
+                setTimeout(checkAndCenter, 50);
+              });
+              observer.observe(wrapper);
+            }
+          }, 500);
+        }
+      })();
+    &lt;/script&gt;
+  
+                              &lt;/body&gt;
+                              &lt;/html&gt;
+                            "></iframe></div>
