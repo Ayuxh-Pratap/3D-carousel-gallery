@@ -15,13 +15,24 @@ export function createCarousel(scene: THREE.Scene) {
     const meshes: CarouselMesh[] = [];
 
     CAROUSEL_CONTENT.forEach((item, i) => {
+        const texture = texLoader.load(item.img, (tex) => {
+            const img = tex.image as { width?: number; height?: number } | undefined;
+            if (img?.width && img?.height) {
+                material.uniforms.uTextureAspect.value = img.width / img.height;
+            } else {
+                material.uniforms.uTextureAspect.value = 1;
+            }
+        });
+
         const material = new THREE.ShaderMaterial({
             uniforms: {
-                uTexture: { value: texLoader.load(item.img) },
+                uTexture: { value: texture },
                 uTime: { value: 0 },
                 uSpeed: { value: 0 },
                 uOffset: { value: i * CAROUSEL_CONFIG.gap },
                 uHover: { value: 0 },
+                uPlaneAspect: { value: CAROUSEL_CONFIG.cardW / CAROUSEL_CONFIG.cardH },
+                uTextureAspect: { value: 1 },
             },
             vertexShader: VERTEX_SHADER,
             fragmentShader: FRAGMENT_SHADER,
@@ -68,8 +79,9 @@ export function updateCarousel(
         m.position.x = x;
 
         const d = Math.abs(x);
-        m.position.y = Math.sin(x * 0.8 + time) * 0.45;
-        m.position.z = Math.cos(x * 0.8 + time) * 0.45 - Math.pow(d * 0.35, 2);
+        // Softer vertical/depth motion to keep cards closer to axis
+        m.position.y = Math.sin(x * 0.8 + time) * 0.18;
+        m.position.z = Math.cos(x * 0.8 + time) * 0.25 - Math.pow(d * 0.35, 2);
         m.rotation.y = -x * 0.08;
 
         // Update uniforms

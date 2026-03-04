@@ -24,6 +24,8 @@ export const FRAGMENT_SHADER = /* glsl */ `
   uniform sampler2D uTexture;
   uniform float uTime;
   uniform float uHover;
+  uniform float uPlaneAspect;
+  uniform float uTextureAspect;
   varying vec2 vUv;
 
   float rnd(vec2 st) {
@@ -33,9 +35,25 @@ export const FRAGMENT_SHADER = /* glsl */ `
   void main() {
     vec2 uv = vUv;
 
+    // Cover-style UV mapping (like CSS object-fit: cover)
+    // Ensures the texture fills the plane while preserving aspect ratio.
+    float planeAspect = max(uPlaneAspect, 0.0001);
+    float texAspect = max(uTextureAspect, 0.0001);
+
+    vec2 coverUv = uv;
+    if (texAspect > planeAspect) {
+      // Texture is wider than the plane: crop horizontally
+      float scale = planeAspect / texAspect;
+      coverUv.x = (coverUv.x - 0.5) * scale + 0.5;
+    } else {
+      // Texture is taller than the plane: crop vertically
+      float scale = texAspect / planeAspect;
+      coverUv.y = (coverUv.y - 0.5) * scale + 0.5;
+    }
+
     // Ripple distortion on hover
-    float ripple = sin(uv.x * 10.0 + uTime * 2.0) * 0.005 * uHover;
-    vec4 tex = texture2D(uTexture, uv + ripple);
+    float ripple = sin(coverUv.x * 10.0 + uTime * 2.0) * 0.005 * uHover;
+    vec4 tex = texture2D(uTexture, coverUv + ripple);
 
     // Desaturation → partial color on hover
     float gray = dot(tex.rgb, vec3(0.299, 0.587, 0.114));

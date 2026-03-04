@@ -27,23 +27,23 @@ export interface CarouselItem {
 
 export const CAROUSEL_CONTENT: CarouselItem[] = [
   {
-    img: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=2000&auto=format&fit=crop",
-    title: "QUANTUM_SHIFT",
+    img: "/personal/p1.png",
+    title: "OUR_FIRST_CHAPTER",
   },
   {
-    img: "https://images.unsplash.com/photo-1635776062127-d379bfcbb9c8?q=80&w=2000&auto=format&fit=crop",
-    title: "PLASMA_ARC",
+    img: "/personal/p2.png",
+    title: "MOMENTS_WITH_YOU",
   },
   {
-    img: "https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=2000&auto=format&fit=crop",
-    title: "CYBER_SPHERE",
+    img: "/personal/p3.png",
+    title: "YOU_ARE_MY_HOME",
   },
   {
-    img: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=2000&auto=format&fit=crop",
-    title: "DARK_MATTER",
+    img: "/personal/p4.png",
+    title: "FOREVER_US_TWO",
   },
   {
-    img: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=2000&auto=format&fit=crop",
-    title: "LIGHT_SYNC",
+    img: "/personal/p5.png",
+    title: "MY_FAVORITE_MEMORY",
   },
 ];

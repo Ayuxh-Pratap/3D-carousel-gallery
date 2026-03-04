@@ -12,30 +12,30 @@ export default function GridOverlay({ activeSlide, totalSlides }: GridOverlayPro
     const progress = totalSlides > 1 ? (activeSlide / (totalSlides - 1)) * 100 : 0;
 
     return (
-        <div className="absolute inset-0 z-10 grid grid-cols-[60px_1fr_60px] grid-rows-[60px_1fr_60px] pointer-events-none">
+        <div className="absolute inset-0 z-10 grid grid-cols-[40px_1fr_40px] grid-rows-[40px_1fr_40px] md:grid-cols-[60px_1fr_60px] md:grid-rows-[60px_1fr_60px] pointer-events-none">
             {/* Grid lines */}
-            <div className="gl-line w-full h-px left-0 top-[60px]" />
-            <div className="gl-line w-full h-px left-0 bottom-[60px]" />
-            <div className="gl-line h-full w-px top-0 left-[60px]" />
-            <div className="gl-line h-full w-px top-0 right-[60px]" />
+            <div className="gl-line w-full h-px left-0 top-[40px] md:top-[60px]" />
+            <div className="gl-line w-full h-px left-0 bottom-[40px] md:bottom-[60px]" />
+            <div className="gl-line h-full w-px top-0 left-[40px] md:left-[60px]" />
+            <div className="gl-line h-full w-px top-0 right-[40px] md:right-[60px]" />
 
             {/* Corner crosshairs */}
-            <div className="crosshair absolute w-2.5 h-2.5 top-[55px] left-[55px]" />
-            <div className="crosshair absolute w-2.5 h-2.5 top-[55px] right-[55px]" />
-            <div className="crosshair absolute w-2.5 h-2.5 bottom-[55px] left-[55px]" />
-            <div className="crosshair absolute w-2.5 h-2.5 bottom-[55px] right-[55px]" />
+            <div className="crosshair absolute w-2.5 h-2.5 top-[35px] left-[35px] md:top-[55px] md:left-[55px]" />
+            <div className="crosshair absolute w-2.5 h-2.5 top-[35px] right-[35px] md:top-[55px] md:right-[55px]" />
+            <div className="crosshair absolute w-2.5 h-2.5 bottom-[35px] left-[35px] md:bottom-[55px] md:left-[55px]" />
+            <div className="crosshair absolute w-2.5 h-2.5 bottom-[35px] right-[35px] md:bottom-[55px] md:right-[55px]" />
 
             {/* Header */}
             <HeaderHUD />
 
             {/* Left side text */}
             <div className="col-start-1 row-start-2 flex justify-center items-center side-text rotate-180 meta-text">
-                <span className="text-[#555555]">DATA_STREAM [ENCRYPTED]</span>
+                <span className="text-[#555555]">LOVE_LETTER [FOR_YOU]</span>
             </div>
 
             {/* Right side text */}
             <div className="col-start-3 row-start-2 flex justify-center items-center side-text meta-text">
-                <span>LATENCY_SYNC</span>
+                <span>HEARTBEAT_SYNC</span>
             </div>
 
             {/* Footer */}

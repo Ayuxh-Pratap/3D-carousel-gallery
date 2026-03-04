@@ -9,10 +9,10 @@ export default function FooterHUD({ activeSlide, totalSlides }: FooterHUDProps) 
     const progress = totalSlides > 1 ? (activeSlide / (totalSlides - 1)) * 100 : 0;
 
     return (
-        <footer className="col-start-2 row-start-3 flex justify-between items-center px-5 meta-text">
+        <footer className="col-start-2 row-start-3 flex justify-between items-center px-3 md:px-5 meta-text">
             <div className="flex items-center">
                 <div className="w-1.5 h-1.5 bg-[#00FF41] rounded-full mr-3 shadow-[0_0_12px_#00FF41]" />
-                <span>RESONANCE STABLE</span>
+                <span>LOVE_SIGNAL STRONG</span>
             </div>
             <div className="text-[#555555]">
                 {current} / {total}
