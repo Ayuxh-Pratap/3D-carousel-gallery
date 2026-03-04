@@ -1,7 +1,8 @@
 {
-  "name": "showcase_hero",
+  "name": "for_harshita_gallery",
   "version": "0.1.0",
   "private": true,
+  "description": "A little 3D love gallery made for Harshita.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

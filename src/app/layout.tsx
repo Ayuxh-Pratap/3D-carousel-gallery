@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CORE_SYSTEM — Spatial Showcase",
-  description: "Futuristic 3D carousel gallery with WebGL shaders and HUD interface",
+  title: "For Harshita — A Little Love Gallery",
+  description: "A soft, futuristic 3D gallery of shared memories, made as a love gift for Harshita.",
 };
 
 export default function RootLayout({

@@ -27,9 +27,9 @@ export default function LoaderOverlay() {
     return (
         <div
             ref={loaderRef}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black transition-opacity duration-1000 text-[11px] tracking-[0.3em] text-[#EAEAEA]"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-black transition-opacity duration-1000 text-[11px] tracking-[0.3em] text-[#EAEAEA]"
         >
-            LOADING_MEMORIES_FOR_YOU...
+            LOADING_MEMORIES_FOR_HARSHITA...
         </div>
     );
 }

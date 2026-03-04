@@ -12,7 +12,8 @@ export const VERTEX_SHADER = /* glsl */ `
 
     float wave = sin(pos.x * 1.5 + uTime * 2.0 + uOffset * 2.0)
                * cos(pos.y * 1.5 + uTime * 1.5);
-    pos.z += wave * 0.25 + sin(pos.x * 2.0) * uSpeed * 0.3;
+    // Softer wave deformation for a calmer effect
+    pos.z += wave * 0.12 + sin(pos.x * 2.0) * uSpeed * 0.18;
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
   }
@@ -51,8 +52,8 @@ export const FRAGMENT_SHADER = /* glsl */ `
       coverUv.y = (coverUv.y - 0.5) * scale + 0.5;
     }
 
-    // Ripple distortion on hover
-    float ripple = sin(coverUv.x * 10.0 + uTime * 2.0) * 0.005 * uHover;
+    // Ripple distortion on hover (slightly reduced)
+    float ripple = sin(coverUv.x * 10.0 + uTime * 2.0) * 0.003 * uHover;
     vec4 tex = texture2D(uTexture, coverUv + ripple);
 
     // Desaturation → partial color on hover

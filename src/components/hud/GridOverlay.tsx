@@ -30,7 +30,7 @@ export default function GridOverlay({ activeSlide, totalSlides }: GridOverlayPro
 
             {/* Left side text */}
             <div className="col-start-1 row-start-2 flex justify-center items-center side-text rotate-180 meta-text">
-                <span className="text-[#555555]">LOVE_LETTER [FOR_YOU]</span>
+                <span className="text-[#555555]">LOVE_LETTER [FOR_HARSHITA]</span>
             </div>
 
             {/* Right side text */}

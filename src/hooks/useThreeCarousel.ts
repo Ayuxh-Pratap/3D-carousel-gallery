@@ -30,6 +30,7 @@ export function useThreeCarousel(
     const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
     const groupRef = useRef<THREE.Group | null>(null);
     const raycasterRef = useRef(new THREE.Raycaster());
+    const touchStartYRef = useRef(0);
 
     const onActiveSlideChange = useRef(options?.onActiveSlideChange);
     const onHoverChange = useRef(options?.onHoverChange);
@@ -55,6 +56,21 @@ export function useThreeCarousel(
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
         renderer.setSize(w, h);
+    }, []);
+
+    const handleTouchStart = useCallback((e: TouchEvent) => {
+        if (e.touches.length > 0) {
+            touchStartYRef.current = e.touches[0].clientY;
+        }
+    }, []);
+
+    const handleTouchMove = useCallback((e: TouchEvent) => {
+        if (e.touches.length > 0) {
+            const currentY = e.touches[0].clientY;
+            const deltaY = touchStartYRef.current - currentY;
+            touchStartYRef.current = currentY;
+            scrollTargetRef.current += deltaY * 0.01 * CAROUSEL_CONFIG.speed;
+        }
     }, []);
 
     useEffect(() => {
@@ -92,6 +108,8 @@ export function useThreeCarousel(
         window.addEventListener("wheel", handleWheel, { passive: true });
         window.addEventListener("mousemove", handleMouseMove);
         window.addEventListener("resize", handleResize);
+        window.addEventListener("touchstart", handleTouchStart, { passive: true });
+        window.addEventListener("touchmove", handleTouchMove, { passive: true });
 
         // ── Animation loop ───────────────────────────────────────────
         let lastActiveIdx = -1;
@@ -147,6 +165,8 @@ export function useThreeCarousel(
             window.removeEventListener("wheel", handleWheel);
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("resize", handleResize);
+            window.removeEventListener("touchstart", handleTouchStart);
+            window.removeEventListener("touchmove", handleTouchMove);
 
             disposeCarousel(meshes, group, scene);
             renderer.dispose();
